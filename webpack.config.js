@@ -7,6 +7,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackSynchronizableShellPlugin = require('webpack-synchronizable-shell-plugin');
 const NativeScriptVueExternals = require('nativescript-vue-externals');
 const NativeScriptVueTarget = require('nativescript-vue-target');
+// require("nativescript-nodeify");
 
 // Prepare NativeScript application from template (if necessary)
 require('./prepare')();
@@ -140,7 +141,7 @@ const config = (platform, launchArgs) => {
 
     node: {
       'http': false,
-      'timers': false,
+      'timers': true,
       'setImmediate': false,
       'fs': 'empty',
     },
