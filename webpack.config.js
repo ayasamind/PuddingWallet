@@ -144,6 +144,10 @@ const config = (platform, launchArgs) => {
       'timers': true,
       'setImmediate': false,
       'fs': 'empty',
+      'net': 'empty',
+      'dns': 'empty',
+      'tls': 'empty',
+      'dgram': 'empty'
     },
 
   };
