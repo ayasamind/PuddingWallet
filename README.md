@@ -1,3 +1,4 @@
+# 機能を追加していきますー
 # NativeScript-Vue Application
 
 > A native application built with NativeScript-Vue
