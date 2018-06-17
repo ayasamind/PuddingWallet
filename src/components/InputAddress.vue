@@ -4,14 +4,13 @@
       <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" @tap="$router.push('/home')"/>
     </ActionBar>
     <StackLayout class="hello-world">
-      <!-- <Label :text="sender" /> -->
       <Label class="body" textWrap=true text="送金先のアドレスを入力してください"/>
-      <TextField v-model="sendee" />
+      <TextField v-model="sampleurl" />
       <Label class="body" textWrap=true text="金額を入力してください"/>
       <TextField v-model="price" />
       <Button class="btn btn-primary" @tap="sendEther()" text="送金！"/>
       <Label class="body" textWrap=true text="バーコードを読み取る"/>
-      <Button class="btn btn-primary" @tap="scanbarcode()" text="カメラ起動"/>
+      <Button class="btn btn-primary" @tap="scanBarcode()" text="カメラ起動"/>
     </StackLayout>    
   </Page>
 </template>
@@ -25,8 +24,8 @@
   export default {
       data() {
           return {
-              address: null,
-            //   sender: "someone's address"
+              //初期値は空
+              sampleurl: '',
           }
       },
       methods: {
@@ -46,7 +45,7 @@
                 }, (e) => {
                 });              
           },
-        scanbarcode() {
+        scanBarcode() {
             barcodescanner.scan({
                 formats: "QR_CODE,PDF_417",   // Pass in of you want to restrict scanning to certain types
                 cancelLabel: "Close Barcode Scanner", // iOS only, default 'Close'
@@ -64,6 +63,8 @@
           }).then((result) => {
             console.log("Scan format: " + result.format);
             console.log("Scan text:   " + result.text);
+            alert("送金先アドレスは" + result.text + "です");
+            this.sampleurl = result.text;
           },(error) => {
             console.log("No scan: " + error);
           });
